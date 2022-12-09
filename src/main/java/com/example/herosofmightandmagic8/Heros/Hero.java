@@ -9,7 +9,8 @@ public class Hero {
     private int currentHP;
     private int initiative;
     private int currentInitiative;
-    private boolean alive = true;
+    private boolean isAlive = true;
+    private String[] attackList;
     private Effects effects = new Effects();
 
     public String getName() {
@@ -29,7 +30,11 @@ public class Hero {
     }
 
     public boolean isAlive() {
-        return alive;
+        return isAlive;
+    }
+
+    public String[] getAttackList() {
+        return attackList;
     }
 
     public int getCurrentInitiative() {
@@ -58,8 +63,31 @@ public class Hero {
 
     public void takeDamage(int damage)
     {
-
+        currentHP -= damage;
+        if(currentHP <= 0)
+        {
+            isAlive = false;
+        }
     }
+
+    public void takeHealing(int healing)
+    {
+        currentHP += healing;
+        if(currentHP > maxHP)
+        {
+            currentHP = maxHP;
+        }
+    }
+
+    public boolean attackRequest(String userInput)
+    {
+        switch (userInput)
+        {
+            default:
+                return false;
+        }
+    }
+    //takes in an attack user wants to do. If it is successful returns true otherwise false
 
     public Hero(String name, int team, int maxHP, int initiative) {
         this.name = name;
